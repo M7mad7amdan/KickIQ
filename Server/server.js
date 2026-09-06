@@ -9,6 +9,7 @@ const teamRoutes = require("./routes/teamRoutes");
 const statisticsRoutes = require("./routes/statisticsRoutes");
 const newsRoutes = require("./routes/newsRoutes");
 const cupRoutes = require("./routes/cupRoutes");
+const matchRoutes = require("./routes/matchRoutes");
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -19,6 +20,7 @@ app.use("/api/teams", teamRoutes);
 app.use("/api/news", newsRoutes);
 app.use("/api/statistics", statisticsRoutes);
 app.use("/api/cups", cupRoutes);
+app.use("/api/matches", matchRoutes);
 pool.query("SELECT NOW()", (error, result) => {
   if (error) {
     console.log("Database connection error:", error);
@@ -26,6 +28,8 @@ pool.query("SELECT NOW()", (error, result) => {
     console.log("Database connected");
   }
 });
-app.listen(3000, () => {
-  console.log("Server is running on port 3000");
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });

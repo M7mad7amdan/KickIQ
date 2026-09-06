@@ -29,8 +29,6 @@ export default function News() {
         const response = await fetch(url);
         const data = await response.json();
 
-        console.log("NEWS RESPONSE:", data);
-
         if (!response.ok) {
           throw new Error(data.message || "Unable to load news");
         }
@@ -57,20 +55,57 @@ export default function News() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#F6F7F9] flex items-center justify-center">
-        <p className="text-sm text-slate-500">Loading news...</p>
+      <div
+        className="
+          min-h-screen
+          bg-[#F6F7F9]
+          flex
+          items-center
+          justify-center
+          px-4
+        "
+      >
+        <p className="text-sm text-slate-500">
+          Loading news...
+        </p>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="min-h-screen bg-[#F6F7F9] flex flex-col items-center justify-center text-center px-6">
-        <h2 className="text-xl font-semibold text-[#08111F]">
+      <div
+        className="
+          min-h-screen
+          bg-[#F6F7F9]
+          flex
+          flex-col
+          items-center
+          justify-center
+          text-center
+          px-4
+          sm:px-6
+        "
+      >
+        <h2
+          className="
+            text-lg
+            sm:text-xl
+            font-semibold
+            text-[#08111F]
+          "
+        >
           News unavailable
         </h2>
 
-        <p className="text-sm text-slate-500 mt-2">
+        <p
+          className="
+            text-sm
+            text-slate-500
+            mt-2
+            max-w-[420px]
+          "
+        >
           {error}
         </p>
       </div>
@@ -82,33 +117,90 @@ export default function News() {
 
       {/* Header */}
       <section className="bg-[#08111F]">
-        <div className="max-w-[1120px] mx-auto px-6 py-16">
 
-          <div className="flex flex-col gap-8">
+        <div
+          className="
+            max-w-[1120px]
+            mx-auto
+
+            px-4
+            sm:px-6
+            lg:px-8
+
+            py-10
+            sm:py-12
+            lg:py-16
+          "
+        >
+
+          <div
+            className="
+              flex
+              flex-col
+              gap-6
+              sm:gap-8
+            "
+          >
 
             <div>
-              <p className="text-sm text-slate-400 mb-3">
+
+              <p
+                className="
+                  text-xs
+                  sm:text-sm
+                  text-slate-400
+                  mb-2
+                  sm:mb-3
+                "
+              >
                 Football
               </p>
 
-              <h1 className="text-white text-4xl md:text-5xl font-semibold tracking-tight">
+              <h1
+                className="
+                  text-white
+                  text-3xl
+                  sm:text-4xl
+                  md:text-5xl
+                  font-semibold
+                  tracking-tight
+                "
+              >
                 News
               </h1>
+
             </div>
 
-            <div className="flex gap-2 overflow-x-auto pb-1">
+
+            {/* Categories */}
+            <div
+              className="
+                flex
+                gap-2
+                overflow-x-auto
+                pb-1
+              "
+            >
 
               {categories.map((item) => (
                 <button
                   key={item}
                   onClick={() => setCategory(item)}
                   className={`
+                    shrink-0
                     whitespace-nowrap
+
                     px-4
-                    py-2.5
+                    py-2
+                    sm:py-2.5
+
                     rounded-full
-                    text-sm
+
+                    text-xs
+                    sm:text-sm
+
                     transition
+
                     ${
                       category === item
                         ? "bg-white text-[#08111F] font-medium"
@@ -125,11 +217,25 @@ export default function News() {
           </div>
 
         </div>
+
       </section>
 
 
       {/* Content */}
-      <main className="max-w-[1120px] mx-auto px-6 py-12">
+      <main
+        className="
+          max-w-[1120px]
+          mx-auto
+
+          px-4
+          sm:px-6
+          lg:px-8
+
+          py-8
+          sm:py-10
+          lg:py-12
+        "
+      >
 
         {featured ? (
           <>
@@ -139,7 +245,13 @@ export default function News() {
               href={featured.link}
               target="_blank"
               rel="noreferrer"
-              className="group block mb-12"
+              className="
+                group
+                block
+                mb-8
+                sm:mb-10
+                lg:mb-12
+              "
             >
 
               <article
@@ -147,15 +259,29 @@ export default function News() {
                   grid
                   grid-cols-1
                   lg:grid-cols-[1.25fr_0.75fr]
+
                   bg-white
+
                   border
                   border-slate-200
+
                   rounded-2xl
                   overflow-hidden
                 "
               >
 
-                <div className="h-[320px] lg:h-[420px] bg-slate-100 overflow-hidden">
+                {/* Featured Image */}
+                <div
+                  className="
+                    h-[220px]
+                    sm:h-[280px]
+                    md:h-[320px]
+                    lg:h-[420px]
+
+                    bg-slate-100
+                    overflow-hidden
+                  "
+                >
 
                   <img
                     src={
@@ -167,8 +293,10 @@ export default function News() {
                       w-full
                       h-full
                       object-cover
+
                       transition
                       duration-500
+
                       group-hover:scale-[1.02]
                     "
                   />
@@ -176,29 +304,77 @@ export default function News() {
                 </div>
 
 
-                <div className="p-7 md:p-9 flex flex-col justify-end">
+                {/* Featured Content */}
+                <div
+                  className="
+                    p-5
+                    sm:p-7
+                    md:p-9
 
-                  <div className="flex items-center gap-3 mb-5">
+                    flex
+                    flex-col
+                    justify-end
+                  "
+                >
 
-                    <span className="text-xs font-medium text-[#4F8FEA]">
+                  <div
+                    className="
+                      flex
+                      flex-wrap
+                      items-center
+
+                      gap-2
+                      sm:gap-3
+
+                      mb-4
+                      sm:mb-5
+                    "
+                  >
+
+                    <span
+                      className="
+                        text-[11px]
+                        sm:text-xs
+                        font-medium
+                        text-[#4F8FEA]
+                      "
+                    >
                       {featured.source || "Unknown source"}
                     </span>
 
-                    <span className="w-1 h-1 rounded-full bg-slate-300" />
+                    <span
+                      className="
+                        w-1
+                        h-1
+                        rounded-full
+                        bg-slate-300
+                      "
+                    />
 
-                    <span className="text-xs text-slate-400">
+                    <span
+                      className="
+                        text-[11px]
+                        sm:text-xs
+                        text-slate-400
+                      "
+                    >
                       {featured.date || "Recent"}
                     </span>
 
                   </div>
 
+
                   <h2
                     className="
-                      text-2xl
+                      text-xl
+                      sm:text-2xl
                       md:text-3xl
+
                       font-semibold
                       leading-tight
+
                       text-[#08111F]
+
                       transition
                       group-hover:text-[#4F8FEA]
                     "
@@ -206,7 +382,16 @@ export default function News() {
                     {featured.title}
                   </h2>
 
-                  <p className="text-sm text-slate-500 mt-5">
+
+                  <p
+                    className="
+                      text-xs
+                      sm:text-sm
+                      text-slate-500
+                      mt-4
+                      sm:mt-5
+                    "
+                  >
                     Read full story →
                   </p>
 
@@ -218,9 +403,23 @@ export default function News() {
 
 
             {/* News Grid */}
-            <section className="grid grid-cols-1 md:grid-cols-2 gap-x-7 gap-y-10">
+            <section
+              className="
+                grid
+
+                grid-cols-1
+                md:grid-cols-2
+
+                gap-x-6
+                lg:gap-x-7
+
+                gap-y-8
+                sm:gap-y-10
+              "
+            >
 
               {remainingNews.map((item) => (
+
                 <a
                   key={item.id}
                   href={item.link}
@@ -231,12 +430,18 @@ export default function News() {
 
                   <article>
 
+                    {/* Image */}
                     <div
                       className="
-                        h-[245px]
+                        h-[200px]
+                        sm:h-[220px]
+                        lg:h-[245px]
+
                         rounded-2xl
                         overflow-hidden
+
                         bg-slate-100
+
                         border
                         border-slate-200
                       "
@@ -252,8 +457,10 @@ export default function News() {
                           w-full
                           h-full
                           object-cover
+
                           transition
                           duration-500
+
                           group-hover:scale-[1.03]
                         "
                       />
@@ -261,29 +468,73 @@ export default function News() {
                     </div>
 
 
-                    <div className="pt-5">
+                    {/* Content */}
+                    <div
+                      className="
+                        pt-4
+                        sm:pt-5
+                      "
+                    >
 
-                      <div className="flex items-center gap-3 mb-3">
+                      <div
+                        className="
+                          flex
+                          flex-wrap
+                          items-center
 
-                        <span className="text-xs font-medium text-[#4F8FEA]">
+                          gap-2
+                          sm:gap-3
+
+                          mb-2
+                          sm:mb-3
+                        "
+                      >
+
+                        <span
+                          className="
+                            text-[11px]
+                            sm:text-xs
+                            font-medium
+                            text-[#4F8FEA]
+                          "
+                        >
                           {item.source || "Unknown source"}
                         </span>
 
-                        <span className="w-1 h-1 rounded-full bg-slate-300" />
+                        <span
+                          className="
+                            w-1
+                            h-1
+                            rounded-full
+                            bg-slate-300
+                          "
+                        />
 
-                        <span className="text-xs text-slate-400">
+                        <span
+                          className="
+                            text-[11px]
+                            sm:text-xs
+                            text-slate-400
+                          "
+                        >
                           {item.date || "Recent"}
                         </span>
 
                       </div>
 
+
                       <h2
                         className="
-                          text-xl
+                          text-lg
+                          sm:text-xl
+
                           font-semibold
                           leading-snug
+
                           text-[#08111F]
+
                           transition
+
                           group-hover:text-[#4F8FEA]
                         "
                       >
@@ -295,6 +546,7 @@ export default function News() {
                   </article>
 
                 </a>
+
               ))}
 
             </section>
@@ -302,13 +554,39 @@ export default function News() {
           </>
         ) : (
 
-          <div className="min-h-[350px] flex flex-col items-center justify-center text-center">
+          <div
+            className="
+              min-h-[250px]
+              sm:min-h-[350px]
 
-            <h2 className="text-xl font-semibold text-[#08111F]">
+              flex
+              flex-col
+              items-center
+              justify-center
+
+              text-center
+              px-4
+            "
+          >
+
+            <h2
+              className="
+                text-lg
+                sm:text-xl
+                font-semibold
+                text-[#08111F]
+              "
+            >
               No news found
             </h2>
 
-            <p className="text-sm text-slate-500 mt-2">
+            <p
+              className="
+                text-sm
+                text-slate-500
+                mt-2
+              "
+            >
               Try another category.
             </p>
 
